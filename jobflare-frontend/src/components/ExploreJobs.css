@@ -1,0 +1,162 @@
+.explore-jobs-page {
+  padding: 80px 20px;
+  background-color: var(--bg-primary);
+  min-height: 100vh;
+}
+
+.explore-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.explore-header {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.back-btn:hover {
+  transform: translateX(-5px);
+}
+
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.job-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.job-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.job-card-link:hover .job-card {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px var(--shadow);
+  border-color: var(--accent);
+}
+
+.job-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.job-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.job-tag {
+  background-color: var(--bg-tertiary);
+  color: var(--accent);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+}
+
+.posted-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.job-card-body {
+  flex-grow: 1;
+}
+
+.job-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.job-card-salary {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.job-card-footer {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.view-details-btn {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap 0.2s ease;
+}
+
+.job-card-link:hover .view-details-btn {
+  gap: 1rem;
+}
+
+.signin-prompt {
+  text-align: center;
+  padding: 3rem;
+  border-top: 1px solid var(--border);
+}
+
+.signin-prompt p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.signin-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signin-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .jobs-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .explore-jobs-page {
+    padding: 60px 15px;
+  }
+}

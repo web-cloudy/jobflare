@@ -1,0 +1,140 @@
+.job-detail-page {
+  padding: 60px 20px;
+  background-color: var(--bg-primary);
+  min-height: 100vh;
+}
+
+.job-detail-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--bg-secondary);
+  padding: 4rem;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.back-btn:hover {
+  transform: translateX(-5px);
+}
+
+.job-header {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+.job-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.job-meta {
+  display: flex;
+  gap: 3rem;
+  padding: 1.5rem;
+  background-color: var(--bg-tertiary);
+  border-radius: 12px;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.meta-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.meta-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.job-section {
+  margin-bottom: 2.5rem;
+}
+
+.job-section h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.job-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.job-list {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.job-list li {
+  margin-bottom: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.job-list li::marker {
+  color: var(--accent);
+}
+
+.job-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+.job-apply-cta {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.apply-btn {
+  padding: 1rem 3rem;
+  font-size: 1.1rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .job-detail-container {
+    padding: 2rem;
+  }
+
+  .job-title {
+    font-size: 1.8rem;
+  }
+
+  .job-meta {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
