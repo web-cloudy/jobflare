@@ -15,10 +15,10 @@ import { protect } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// @route   POST /api/admin/initialize
+// @route   GET /api/admin/initialize
 // @desc    Initialize default admin account (run once)
 // @access  Public
-router.post('/initialize', initializeAdmin);
+router.get('/initialize', initializeAdmin);
 
 // @route   POST /api/admin/login
 // @desc    Admin login
