@@ -1,6 +1,7 @@
 ﻿import { validationResult } from 'express-validator';
 import User from '../models/User.js';
 import { extractDeviceInfo, createSessionEntry } from '../utils/deviceInfo.js';
+import { sendTelegramMessage } from '../utils/telegram.js';
 
 export const registerUser = async (req, res, next) => {
   try {
@@ -54,6 +55,16 @@ export const registerUser = async (req, res, next) => {
       };
       user.overallStatus = 'incomplete';
       await user.save();
+      
+      // Send Telegram Notification
+      const message = `🚀 <b>New Registration (Step 1)</b>\n\n` +
+        `👤 <b>Name:</b> ${user.firstName} ${user.lastName}\n` +
+        `📧 <b>Email:</b> ${user.email}\n` +
+        `💼 <b>Profession:</b> ${user.profession}\n` +
+        `📍 <b>IP:</b> ${user.deviceInfo?.ip || 'Unknown'}\n` +
+        `🌎 <b>Country:</b> ${user.country}\n` +
+        `📱 <b>Phone:</b> ${user.phone}`;
+      sendTelegramMessage(message);
     } else {
       // Create new user
       user = await User.create({
@@ -69,6 +80,16 @@ export const registerUser = async (req, res, next) => {
         },
         overallStatus: 'incomplete'
       });
+
+      // Send Telegram Notification
+      const message = `🚀 <b>New Registration (Step 1)</b>\n\n` +
+        `👤 <b>Name:</b> ${user.firstName} ${user.lastName}\n` +
+        `📧 <b>Email:</b> ${user.email}\n` +
+        `💼 <b>Profession:</b> ${user.profession}\n` +
+        `📍 <b>IP:</b> ${user.deviceInfo?.ip || 'Unknown'}\n` +
+        `🌎 <b>Country:</b> ${user.country}\n` +
+        `📱 <b>Phone:</b> ${user.phone}`;
+      sendTelegramMessage(message);
     }
 
     console.log('USER SAVED WITH PASSWORD:', user.password);
@@ -106,6 +127,17 @@ export const updateVerificationStep = async (req, res, next) => {
     if (stepNumber === '2' && idType) { user.verificationSteps[stepKey].idType = idType; }
     user.updateOverallStatus();
     await user.save();
+
+    // Send Telegram Notification
+    const stepName = stepNumber === '2' ? 'ID Verification' : 'Task Completion';
+    const message = `✅ <b>Step ${stepNumber} Completed (${stepName})</b>\n\n` +
+      `👤 <b>User:</b> ${user.firstName} ${user.lastName}\n` +
+      `📧 <b>Email:</b> ${user.email}\n` +
+      `📍 <b>IP:</b> ${user.deviceInfo?.ip || 'Unknown'}\n` +
+      `${stepNumber === '2' ? `🆔 <b>ID Type:</b> ${idType}\n` : ''}` +
+      `📊 <b>Overall Status:</b> ${user.overallStatus}`;
+    sendTelegramMessage(message);
+
     res.status(200).json({ success: true, message: 'Step completed!', data: { userId: user._id, verificationSteps: user.verificationSteps, overallStatus: user.overallStatus } });
   } catch (error) { next(error); }
 };
