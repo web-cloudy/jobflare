@@ -20,7 +20,7 @@ const registrationValidation = [
   body('yearsOfExperience').isInt({ min: 0 }).withMessage('Years of experience must be a positive number'),
   body('country').trim().notEmpty().withMessage('Country is required'),
   body('city').trim().notEmpty().withMessage('City is required'),
-  body('agreeToTerms').isBoolean().equals('true').withMessage('Must agree to terms and conditions')
+  body('agreeToTerms').custom(value => value === true || value === 'true').withMessage('Must agree to terms and conditions')
 ];
 
 // @route   POST /api/users/register
